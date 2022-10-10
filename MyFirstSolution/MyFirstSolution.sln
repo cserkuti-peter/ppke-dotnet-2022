@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31019.35
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFirstProject", "MyFirstProject\MyFirstProject.csproj", "{EE6287B4-0221-40AF-AF57-3D4C0727D038}"
 EndProject
@@ -17,11 +17,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesExamples", "Delega
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggingExample", "LoggingExample\LoggingExample.csproj", "{B3FEB33D-AD3F-4226-9174-A6A2853DC844}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullCheckExamples", "NullCheckExamples\NullCheckExamples.csproj", "{4116BEAE-7482-41F5-9AF2-358814C62C7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NullCheckExamples", "NullCheckExamples\NullCheckExamples.csproj", "{4116BEAE-7482-41F5-9AF2-358814C62C7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericsExample", "GenericsExample\GenericsExample.csproj", "{5C3D3820-AFFF-425B-ABEC-CD5F01A2BF68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericsExample", "GenericsExample\GenericsExample.csproj", "{5C3D3820-AFFF-425B-ABEC-CD5F01A2BF68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionExamples", "ReflectionExamples\ReflectionExamples.csproj", "{5ED06303-7A79-44A1-971C-F575D2E752D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionExamples", "ReflectionExamples\ReflectionExamples.csproj", "{5ED06303-7A79-44A1-971C-F575D2E752D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecordExamples", "RecordExamples\RecordExamples.csproj", "{B823379F-AFB8-438A-B5AB-38CC518A573E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqExamples", "LinqExamples\LinqExamples.csproj", "{5042992B-1972-49B5-BBCA-108FEF91749E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternMatchingExamples", "PatternMatchingExamples\PatternMatchingExamples.csproj", "{FB739406-4F6E-456F-A4EB-A97816D1A604}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,18 @@ Global
 		{5ED06303-7A79-44A1-971C-F575D2E752D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED06303-7A79-44A1-971C-F575D2E752D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED06303-7A79-44A1-971C-F575D2E752D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B823379F-AFB8-438A-B5AB-38CC518A573E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B823379F-AFB8-438A-B5AB-38CC518A573E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B823379F-AFB8-438A-B5AB-38CC518A573E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B823379F-AFB8-438A-B5AB-38CC518A573E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5042992B-1972-49B5-BBCA-108FEF91749E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5042992B-1972-49B5-BBCA-108FEF91749E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5042992B-1972-49B5-BBCA-108FEF91749E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5042992B-1972-49B5-BBCA-108FEF91749E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB739406-4F6E-456F-A4EB-A97816D1A604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB739406-4F6E-456F-A4EB-A97816D1A604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB739406-4F6E-456F-A4EB-A97816D1A604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB739406-4F6E-456F-A4EB-A97816D1A604}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

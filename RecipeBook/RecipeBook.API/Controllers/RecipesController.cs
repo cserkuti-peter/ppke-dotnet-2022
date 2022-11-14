@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RecipeBook.API.Dtos;
 using RecipeBook.API.Models;
 using RecipeBook.API.Services;
+using RecipeBook.API.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,7 +23,7 @@ namespace RecipeBook.API.Controllers
 
         // GET: api/<RecipesController>
         [HttpGet]
-        public async Task<IEnumerable<Recipe>> GetAll(string? term = null)
+        public async Task<IEnumerable<RecipeRowVM>> GetAll(string? term = null)
         {
             //throw new Exception("Test exception");
 
@@ -48,7 +50,7 @@ namespace RecipeBook.API.Controllers
 
         // POST api/<RecipesController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Recipe recipe)
+        public async Task<IActionResult> Post([FromBody] NewRecipeDto recipe)
         {
             //if (!ModelState.IsValid)
             //    return BadRequest(ModelState);
@@ -60,7 +62,7 @@ namespace RecipeBook.API.Controllers
 
         // PUT api/<RecipesController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Recipe recipe)
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateRecipeDto recipe)
         {
             return await _recipeBookService.UpdateRecipeAsync(id, recipe)
                 ? NoContent()

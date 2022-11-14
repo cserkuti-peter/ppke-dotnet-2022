@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RecipeBook.API.Models
+namespace RecipeBook.API.Dtos
 {
-    public class Recipe
+    public class UpdateRecipeDto
     {
         public int Id { get; set; }
         [Required]
@@ -15,10 +14,5 @@ namespace RecipeBook.API.Models
         public int CookTime { get; set; }
         [Range(1, 12)]
         public int Serves { get; set; }
-        public double RatingsAvg { get; set; }
-        //[ForeignKey("RecipeBook")]
-        public int RecipeBookId { get; set; }
-        public RecipeBook RecipeBook { get; set; }
-        public ICollection<Category> Categories { get; set; }
     }
 }

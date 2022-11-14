@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using RecipeBook.API.Dtos;
 using RecipeBook.API.Models;
+using RecipeBook.API.ViewModels;
 using System.Linq.Expressions;
 
 namespace RecipeBook.API.Services
@@ -7,16 +10,20 @@ namespace RecipeBook.API.Services
     public class RecipeBookService : IRecipeBookService
     {
         private readonly RecipeBookContext _context;
-        public RecipeBookService(RecipeBookContext context)
+        private readonly IMapper _mapper;
+        public RecipeBookService(RecipeBookContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
-        public async Task<Recipe> CreateRecipeAsync(Recipe r)
+        public async Task<RecipeVM> CreateRecipeAsync(NewRecipeDto x)
         {
-            _context.Recipes.Add(r);
+            var m = _mapper.Map<Recipe>(x);
+
+            _context.Recipes.Add(m);
             await _context.SaveChangesAsync();
 
-            return r;
+            return _mapper.Map<RecipeVM>(m); 
         }
 
         public async Task<bool> DeleteRecipeAsync(int id)
@@ -34,24 +41,37 @@ namespace RecipeBook.API.Services
             return n == 1;
         }
 
-        public async Task<List<Recipe>> GetAllRecipesAsync()
+        public async Task<List<RecipeRowVM>> GetAllRecipesAsync()
         {
-            return await _context.Recipes.ToListAsync();
+            return await _context
+                .Recipes
+                .Select(x => _mapper.Map<RecipeRowVM>(x))
+                .ToListAsync();
         }
 
-        public async Task<Recipe> GetRecipeByIdAsync(int id)
+        public async Task<RecipeVM> GetRecipeByIdAsync(int id)
         {
-            return await _context.Recipes.FindAsync(id);
+            return await _context
+                .Recipes
+                .Where(x => x.Id == id)
+                .Select(x => _mapper.Map<RecipeVM>(x))
+                .SingleOrDefaultAsync();
         }
 
-        public async Task<List<Recipe>> GetRecipesWhereAsync(Expression<Func<Recipe, bool>> predicate)
+        public async Task<List<RecipeRowVM>> GetRecipesWhereAsync(Expression<Func<Recipe, bool>> predicate)
         {
-            return await _context.Recipes.Where(predicate).ToListAsync();
+            return await _context
+                .Recipes
+                .Where(predicate)
+                .Select(x => _mapper.Map<RecipeRowVM>(x))
+                .ToListAsync();
         }
 
-        public async Task<bool> UpdateRecipeAsync(int id, Recipe r)
+        public async Task<bool> UpdateRecipeAsync(int id, UpdateRecipeDto x)
         {
-            _context.Entry(r).State = EntityState.Modified;
+            var m = _mapper.Map<Recipe>(x);
+            
+            _context.Entry(m).State = EntityState.Modified;
             var n = await _context.SaveChangesAsync();
 
             return n == 1;

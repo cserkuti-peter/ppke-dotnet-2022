@@ -15,8 +15,9 @@ builder.Logging.AddSerilog(logger);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<RecipeBookContext>(opt =>
-    opt.UseInMemoryDatabase("RecipeBook"));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("RecipeBook")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -11,7 +11,11 @@ namespace RecipeBook.API.Profiles
         {
             CreateMap<NewRecipeDto, Recipe>();
             CreateMap<UpdateRecipeDto, Recipe>();
-            CreateMap<Recipe, RecipeRowVM>();
+            CreateMap<Recipe, RecipeRowVM>()
+                .ForMember(
+                    dest => dest.RecipeBookName,
+                    opt => opt.MapFrom(src => src.RecipeBook.Name)
+                );
             CreateMap<Recipe, RecipeVM>()
                 .ForMember(
                     dest => dest.CookTimeMinutes,

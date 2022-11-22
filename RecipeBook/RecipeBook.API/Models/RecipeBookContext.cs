@@ -24,7 +24,7 @@ namespace RecipeBook.API.Models
             //    .UsingEntity(j => j.ToTable("CategoryRecipe"));
 
             modelBuilder.Entity<RecipeBook>().HasData(
-                new RecipeBook { Id = 1, Name = "My recipe book", Description="..." }
+                new RecipeBook { Id = 1, Name = "My recipe book", Description="...", RecipesNumber = 2 }
                 );
 
             modelBuilder.Entity<Recipe>().HasData(

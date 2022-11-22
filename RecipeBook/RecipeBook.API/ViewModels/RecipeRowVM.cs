@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public double RatingsAvg { get; set; }
+        public string RecipeBookName { get; set; }
     }
 }

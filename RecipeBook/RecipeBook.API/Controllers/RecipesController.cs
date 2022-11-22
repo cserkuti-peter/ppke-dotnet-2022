@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RecipeBook.API.Dtos;
+using RecipeBook.API.Filter;
 using RecipeBook.API.Models;
 using RecipeBook.API.Services;
 using RecipeBook.API.ViewModels;
@@ -8,7 +9,7 @@ using RecipeBook.API.ViewModels;
 
 namespace RecipeBook.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class RecipesController : ControllerBase
     {
@@ -22,20 +23,18 @@ namespace RecipeBook.API.Controllers
         }
 
         // GET: api/<RecipesController>
-        [HttpGet]
-        public async Task<IEnumerable<RecipeRowVM>> GetAll(string? term = null)
+        [HttpGet("recipes")]
+        public async Task<IEnumerable<RecipeRowVM>> GetAll([FromQuery] GenericQueryOption<RecipeFilter> option)
         {
             //throw new Exception("Test exception");
 
             _logger.LogInformation("GetAll called.");
 
-            return term == null
-                ? await _recipeBookService.GetAllRecipesAsync()
-                : await _recipeBookService.GetRecipesWhereAsync(x => x.Name.Contains(term));
+            return await _recipeBookService.GetAllRecipesAsync(option);
         }
 
         // GET api/<RecipesController>/5
-        [HttpGet("{id}")]
+        [HttpGet("recipes/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var r = await _recipeBookService.GetRecipeByIdAsync(id);
@@ -49,19 +48,21 @@ namespace RecipeBook.API.Controllers
         }
 
         // POST api/<RecipesController>
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] NewRecipeDto recipe)
+        [HttpPost("recipebook/{recipeBookId}/recipes")]
+        public async Task<IActionResult> Post(int recipeBookId, [FromBody] NewRecipeDto recipe)
         {
             //if (!ModelState.IsValid)
             //    return BadRequest(ModelState);
 
-            var createdRecipe = await _recipeBookService.CreateRecipeAsync(recipe);
+            var createdRecipe = await _recipeBookService.CreateRecipeAsync(recipeBookId, recipe);
+            if (createdRecipe == null)
+                return NotFound();
 
             return CreatedAtAction(nameof(GetById), new { Id = createdRecipe.Id }, createdRecipe);
         }
 
         // PUT api/<RecipesController>/5
-        [HttpPut("{id}")]
+        [HttpPut("recipes/{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] UpdateRecipeDto recipe)
         {
             return await _recipeBookService.UpdateRecipeAsync(id, recipe)
@@ -70,7 +71,7 @@ namespace RecipeBook.API.Controllers
         }
 
         // DELETE api/<RecipesController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("recipes/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             return await _recipeBookService.DeleteRecipeAsync(id)

@@ -12,6 +12,7 @@ namespace RecipeBook.API.Models
         //[Column("CollectionName")]
         public string Name { get; set; }
         public string Description { get; set; }
+        public int RecipesNumber { get; set; }
         public ICollection<Recipe> Recipes { get; set; }
     }
 }

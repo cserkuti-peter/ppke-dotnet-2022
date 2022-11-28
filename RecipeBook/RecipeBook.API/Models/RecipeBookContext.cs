@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using RecipeBook.API.Models.Authentication;
 
 namespace RecipeBook.API.Models
 {
-    public class RecipeBookContext : DbContext
+    public class RecipeBookContext : IdentityDbContext<ApplicationUser>
     {
         public RecipeBookContext(DbContextOptions<RecipeBookContext> options) 
             : base(options)
@@ -11,6 +13,7 @@ namespace RecipeBook.API.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             //  One-to-many
             //modelBuilder.Entity<Recipe>()
             //    .HasOne<RecipeBook>(r => r.RecipeBook)
